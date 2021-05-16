@@ -1,0 +1,8 @@
+Pipfile.lock
+.vscode/
+__pycache__/
+.env
+*.egg-info/
+build/
+dist/
+site/
