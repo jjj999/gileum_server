@@ -1,5 +1,11 @@
 import logging
-from typing import Any, Type
+import sys
+import typing as t
+
+if sys.version_info.minor >= 8:
+    from typing import Literal
+else:
+    from typing_extensions import Literal
 
 
 class _Validater:
@@ -9,14 +15,14 @@ class _Validater:
         yield cls.validate
 
     @classmethod
-    def validate(cls, v: Any) -> Any:
+    def validate(cls, v: t.Any) -> t.Any:
         raise NotImplementedError
 
 
 class Logger_t(_Validater):
 
     @classmethod
-    def validate(cls, v: Any) -> logging.Logger:
+    def validate(cls, v: t.Any) -> logging.Logger:
         if not isinstance(v, logging.Logger):
             raise ValueError(f"{v} is not a logging.Logger.")
         return v
@@ -25,7 +31,7 @@ class Logger_t(_Validater):
 class LoggerClass_t(_Validater):
 
     @classmethod
-    def validate(cls, v: Any) -> Type[logging.Logger]:
+    def validate(cls, v: t.Any) -> t.Type[logging.Logger]:
         if not issubclass(v, logging.Logger):
             raise ValueError(f"{v} is not a subclass of logging.Logger.")
         return v

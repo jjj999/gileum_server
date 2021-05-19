@@ -1,25 +1,18 @@
-__version__ = "0.0.0"
+__version__ = "0.0.1"
 
 
-from typing import (
-    Any,
-    Awaitable,
-    Callable,
-    Dict,
-    Iterable,
-    Tuple,
-)
+import typing as t
 
 
-WSGIApp_t = Callable[
-    [Dict[str, Any], Callable[[Iterable[Tuple[str, str]]], None]],
-    Iterable[bytes],
+WSGIApp_t = t.Callable[
+    [t.Dict[str, t.Any], t.Callable[[t.Iterable[t.Tuple[str, str]]], None]],
+    t.Iterable[bytes],
 ]
-ASGIApp_t = Callable[
+ASGIApp_t = t.Callable[
     [
-        Dict[str, Any],
-        Callable[[], Awaitable[Dict[str, Any]]],
-        Callable[[Dict[str, Any]], Awaitable[None]]
+        t.Dict[str, t.Any],
+        t.Callable[[], t.Awaitable[t.Dict[str, t.Any]]],
+        t.Callable[[t.Dict[str, t.Any]], t.Awaitable[None]]
     ],
-    Awaitable[None]
+    t.Awaitable[None]
 ]
